@@ -1,14 +1,13 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const config = require('./config/config');
 const indexService = require('./src/services/indexService');
 const searchService = require('./src/services/searchService');
-
-// 환경 변수 로드
-dotenv.config();
+const { searchArticles } = require('./src/services/search');
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // CORS 설정
 const corsOptions = {
@@ -38,18 +37,18 @@ app.post('/update-index', async (req, res) => {
     }
 });
 
-app.post('/search', async (req, res) => {
+app.post('/api/search', async (req, res) => {
     try {
-        const { query, limit } = req.body;
+        const { query } = req.body;
         if (!query) {
-            return res.status(400).json({ success: false, error: 'Query is required' });
+            return res.status(400).json({ error: '검색어를 입력해주세요.' });
         }
 
-        const results = await searchService.search(query, limit);
-        res.json({ success: true, results });
+        const results = await searchArticles(query);
+        res.json({ results });
     } catch (error) {
-        console.error('Error performing search:', error);
-        res.status(500).json({ success: false, error: error.message });
+        console.error('Search error:', error);
+        res.status(500).json({ error: '검색 중 오류가 발생했습니다.' });
     }
 });
 
@@ -59,8 +58,7 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`서버가 ${PORT}번 포트에서 실행 중입니다.`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });
 
