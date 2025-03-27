@@ -1,23 +1,25 @@
 {
   "name": "faiss-api-server",
   "version": "1.0.0",
+  "description": "FAISS API Server for News Search",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/momzzit/faiss-api-server.git"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/momzzit/faiss-api-server/issues"
-  },
-  "homepage": "https://github.com/momzzit/faiss-api-server#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "@google-cloud/vertexai": "^0.1.0",
+    "axios": "^1.6.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.18.2",
+    "faiss-node": "^0.5.0",
+    "sonner": "^2.0.1"
   },
-  "description": ""
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
 }
