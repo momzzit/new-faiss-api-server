@@ -5,7 +5,7 @@ const PORT = process.env.PORT || 3000;
 console.log("index.js 파일이 실행되었습니다.");
 
 app.get('/', (req, res) => {
-  res.send('FAISS API 서버 작동 중!');
+  res.send('FAISS API 서버 작동 중!!!');
 });
 
 app.listen(PORT, () => {
