@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - FAISS_API_URL=http://faiss-api:8000
+    depends_on:
+      - redis
+      - faiss-api
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes
+
+  faiss-api:
+    build: 
+      context: ./faiss-api
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - faiss-data:/data
+    environment:
+      - NODE_ENV=production
+
+volumes:
+  redis-data:
+  faiss-data: 

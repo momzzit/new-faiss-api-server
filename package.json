@@ -1,27 +1,52 @@
 {
-  "name": "news-finder-ash",
+  "name": "last-news-finder",
   "version": "1.0.0",
-  "description": "FAISS API Server for News Search",
-  "main": "index.js",
+  "description": "뉴스 검색 서비스",
+  "main": "dist/index.js",
   "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "build": "tsc",
+    "test": "jest",
+    "test:integration": "ts-node src/scripts/test-integration.ts"
   },
-  "keywords": [],
+  "keywords": [
+    "faiss",
+    "vector-search",
+    "news",
+    "api"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@google-cloud/vertexai": "^0.1.0",
+    "@types/ioredis": "^4.28.10",
     "airtable": "^0.12.2",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
-    "dotenv": "^16.4.7",
+    "dotenv": "^16.4.5",
     "express": "^4.18.2",
     "faiss-node": "^0.5.0",
-    "openai": "^4.89.1",
-    "sonner": "^2.0.1"
+    "ioredis": "^5.3.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.11.19",
+    "@types/supertest": "^6.0.3",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@typescript-eslint/eslint-plugin": "^7.0.1",
+    "@typescript-eslint/parser": "^7.0.1",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0",
+    "supertest": "^7.1.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
   }
 }
